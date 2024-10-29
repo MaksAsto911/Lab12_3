@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Гра Камінь, Ножиці, Папір</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>Гра Камінь, Ножиці, Папір</h1>
+    <button onclick="playGame()">Почати гру</button>
+    <p id="result"></p>
+
+    <script>
+        function playGame() {
+            const choices = ["камінь", "ножиці", "папір"];
+            const playerChoice = prompt("Введіть ваш вибір (камінь, ножиці, папір):").toLowerCase();
+
+            if (!choices.includes(playerChoice)) {
+                alert("Невірний вибір! Будь ласка, виберіть 'камінь', 'ножиці' або 'папір'.");
+                return;
+            }
+
+            const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+            let result;
+
+            // Використання оператора switch для визначення результату
+            switch (playerChoice) {
+                case computerChoice:
+                    result = "Нічия! Ви обрали " + playerChoice + " і комп'ютер також обрав " + computerChoice + ".";
+                    break;
+                case "камінь":
+                    result = (computerChoice === "ножиці") 
+                        ? "Ви виграли! Ви обрали " + playerChoice + " і комп'ютер обрав " + computerChoice + "."
+                        : "Ви програли! Ви обрали " + playerChoice + " і комп'ютер обрав " + computerChoice + ".";
+                    break;
+                case "ножиці":
+                    result = (computerChoice === "папір") 
+                        ? "Ви виграли! Ви обрали " + playerChoice + " і комп'ютер обрав " + computerChoice + "."
+                        : "Ви програли! Ви обрали " + playerChoice + " і комп'ютер обрав " + computerChoice + ".";
+                    break;
+                case "папір":
+                    result = (computerChoice === "камінь") 
+                        ? "Ви виграли! Ви обрали " + playerChoice + " і комп'ютер обрав " + computerChoice + "."
+                        : "Ви програли! Ви обрали " + playerChoice + " і комп'ютер обрав " + computerChoice + ".";
+                    break;
+                default:
+                    result = "Невірний вибір!";
+            }
+
+            document.getElementById("result").innerText = result;
+        }
+    </script>
+</body>
+</html>
